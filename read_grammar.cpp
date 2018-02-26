@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "grammar_typedef.h"
+#include "split.h"
 
 // in other words, map<string, vector<vector<string>>>
 // because of things like <sentence, ("the", nounphrase, verb, location)
@@ -20,7 +21,7 @@ Grammar read_grammar(std::istream& in){
         // split the input into words
         std::vector<std::string> entry = split(line);
 
-        if (!entry,.empty()){
+        if (!entry.empty()){
             ret[entry[0]].push_back(Rule(entry.begin() + 1, entry.end()));
         }
     }

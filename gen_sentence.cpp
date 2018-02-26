@@ -1,3 +1,5 @@
+#include <iostream>
+#include <stdexcept> // logic_error
 #include <string>
 #include <vector>
 
@@ -5,7 +7,7 @@
 #include "grammar_typedef.h"
 
 bool bracketed(const std::string& s){
-    return s.size() > 1 && s[0] == '<' && s[s.size - 1] == '>';
+    return s.size() > 1 && s[0] == '<' && s[s.size() - 1] == '>';
 }
 
 std::vector<std::string> gen_sentence (const Grammar& g){
@@ -22,7 +24,7 @@ void gen_aux (const Grammar& g, const std::string& word, std::vector<std::string
         // locate the rule that corresponds to bracketed rule word
         Grammar::const_iterator it = g.find(word);
         if (it == g.end())
-            throw logic_error("emtpy rule");
+            throw std::logic_error("emtpy rule");
 
         // fetch the set of possible rules
         const Rule_collection& c = it->second;
