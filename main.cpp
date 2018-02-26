@@ -15,7 +15,7 @@ Reimplement the grammar program using a list as the data structure in which we b
 #include "read_grammar.h"
 
 int main() {
-	// generate the sentence
+	// generate the sentence by reading the rules, then passing those Grammar rules into gen_sentence
 	std::vector<std::string> sentence = gen_sentence(read_grammar(std::cin));
 
 	// write the first word, if any

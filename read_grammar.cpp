@@ -5,12 +5,6 @@
 #include "grammar_typedef.h"
 #include "split.h"
 
-// in other words, map<string, vector<vector<string>>>
-// because of things like <sentence, ("the", nounphrase, verb, location)
-//                        <verb, ("jumps", "sits")>
-//                        <nounphrase, (noun, (adjective, nounphrase))>
-
-// read a grammar from a given input stream
 Grammar read_grammar(std::istream& in){
     Grammar ret;
     std::string line;

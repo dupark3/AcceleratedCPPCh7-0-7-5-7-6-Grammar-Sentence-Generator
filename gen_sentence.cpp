@@ -1,3 +1,7 @@
+// Exercise 7-6 Reimplement the gen_sentence program using two vectors: One will hold the fully
+// unwound, generated sentence, and the other will hold the rules and will be used as a stack.
+// Do not use any recursive calls
+
 #include <iostream>
 #include <stdexcept> // logic_error
 #include <string>
@@ -18,6 +22,12 @@ std::vector<std::string> gen_sentence (const Grammar& g){
 }
 
 void gen_aux (const Grammar& g, const std::string& word, std::vector<std::string>& ret){
+    // In order to avoid using recursion here, we will iterate through g.find("<sentence>")
+    // g[<sentence>] = the <noun-phrase> <verb> <location>
+    // it = *g.begin() = the  --> pushback since !bracketed
+    // ++it;
+    // next element is <noun-phrase>. g.find(*it)
+
     // if word is not bracketed, we can return the word itself as it is not a rule
     if (!bracketed(word)) {
         ret.push_back(word);
