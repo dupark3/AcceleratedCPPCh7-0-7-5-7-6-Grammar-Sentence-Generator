@@ -16,10 +16,10 @@ Reimplement the grammar program using a list as the data structure in which we b
 
 int main() {
 	// generate the sentence
-	std::vector<std::string> sentence = gen_sentence(read_grammar(std::cin));
+	std::list<std::string> sentence = gen_sentence(read_grammar(std::cin));
 
 	// write the first word, if any
-	std::vector<std::string>::const_iterator it = sentence.begin();
+	std::list<std::string>::const_iterator it = sentence.begin();
 	if (!sentence.empty()){
 		std::cout << *it;
 		++it;
