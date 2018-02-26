@@ -10,6 +10,10 @@ Reimplement the grammar program using a list as the data structure in which we b
 #include <vector>
 #include <list>
 
+#include "gen_sentence.h"
+#include "grammar_typedef.h"
+#include "read_grammar.h"
+
 int main() {
 	// generate the sentence
 	std::vector<std::string> sentence = gen_sentence(read_grammar(std::cin));
