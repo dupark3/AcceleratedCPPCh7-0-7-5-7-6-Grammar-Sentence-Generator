@@ -3,9 +3,7 @@
 
 #include <iostream>
 
-typedef std::vector<std::string> Rule;
-typedef std::vector<Rule> Rule_collection;
-typedef std::map<std::string, Rule_collection> Grammar;
+#include "grammar_typedef.h"
 
 Grammar read_grammar(std::istream&);
 

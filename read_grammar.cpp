@@ -2,9 +2,7 @@
 #include <string>
 #include <vector>
 
-typedef std::vector<std::string> Rule;
-typedef std::vector<Rule> Rule_collection;
-typedef std::map<std::string, Rule_collection> Grammar;
+#include "grammar_typedef.h"
 
 // in other words, map<string, vector<vector<string>>>
 // because of things like <sentence, ("the", nounphrase, verb, location)
