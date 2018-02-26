@@ -5,6 +5,7 @@
 
 #include "gen_sentence.h"
 #include "grammar_typedef.h"
+#include "nrand.h"
 
 bool bracketed(const std::string& s){
     return s.size() > 1 && s[0] == '<' && s[s.size() - 1] == '>';
@@ -34,6 +35,6 @@ void gen_aux (const Grammar& g, const std::string& word, std::vector<std::string
 
         // recursively expand the selected rule
         for (Rule::const_iterator i = r.begin(); i != r.end(); ++i)
-            gen_aux((g, *i, ret);)
+            gen_aux(g, *i, ret);
     }
 }
