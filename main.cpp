@@ -4,7 +4,8 @@ Exercise 7-5 Page 138
 
 Reimplement the grammar program using a list as the data structure in which we build the sentence.
 */
-
+#include <ctime> // time
+#include <cstdlib> // srand
 #include <iostream>
 #include <string>
 #include <vector>
@@ -15,6 +16,8 @@ Reimplement the grammar program using a list as the data structure in which we b
 #include "read_grammar.h"
 
 int main() {
+    std::srand(std::time(NULL)); // seed rand with time to get different random numbers
+
 	// generate the sentence by reading the rules, then passing those Grammar rules into gen_sentence
 	std::vector<std::string> sentence = gen_sentence(read_grammar(std::cin));
 

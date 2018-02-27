@@ -1,5 +1,7 @@
+#include <iostream> // cout to debug
 #include <cstdlib> // rand
 #include <stdexcept> // domain_error
+
 int nrand(int n){
     if (n <= 0 || n > RAND_MAX)
         throw std::domain_error("Argument to nrand is out of range.");
@@ -18,6 +20,6 @@ int nrand(int n){
 
     do r = rand() / bucket_size;
     while (r >= n);
-
+    std::cout << r << std::endl;
     return r;
 }
