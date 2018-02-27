@@ -28,23 +28,28 @@ void gen_aux (const Grammar& g, const std::string& word, std::vector<std::string
     // ++it;
     // next element is <noun-phrase>. g.find(*it)
 
-    // if word is not bracketed, we can return the word itself as it is not a rule
-    if (!bracketed(word)) {
-        ret.push_back(word);
-    } else {
-        // locate the rule that corresponds to bracketed rule word
-        Grammar::const_iterator it = g.find(word);
-        if (it == g.end())
-            throw std::logic_error("emtpy rule");
+    Grammar::const_iterator it = g.find(word); // it points to <sentence>
+    if (it == g.end())
+        throw std::logic_error ("empty rule"); // g did not contain <sentence>
+    const Rule_collection& c = it->second; // c is the vector of vectors possible for <sentence> (only one in this case)
+    const Rule& r = c[nrand(c.size())]; // r selected a random rule of <sentence>, so now holds "the", <noun-phrase>, <verb>, <location>
 
-        // fetch the set of possible rules
-        const Rule_collection& c = it->second;
-
-        // from which we select one at random
-        const Rule& r = c[nrand(c.size())];
-
-        // recursively expand the selected rule
-        for (Rule::const_iterator i = r.begin(); i != r.end(); ++i)
-            gen_aux(g, *i, ret);
+    for (Rule::const_iterator i = r.begin(); i != r.end(); ++i){
+        if (!bracketed(*i)){
+            ret.push_back(*i);
+        } else {
+            const Rule_collection& c2 = g.find(*i)->second; // c2 holds the vector of vectors if bracketed OR holds vector of strings
+            const Rule& r2 = c2[nrand(c2.size())]; // r2 holds the randomly selected vector from the vector of vectors
+            Rule::const_iterator j = r2.begin(); // j points to the beginning of the randomly selected vector of strings
+            while (bracketed(*j)){
+//                if (g.end() == g.find(*j))
+//                    throw std::logic_error("empty rule");
+                const Rule_collection& c3 = g.find(*j)->second;
+                const Rule& r3 = c3[nrand(c3.size())];
+                j = r3.begin();
+            }
+            ret.push_back(*j);
+        }
     }
 }
+
